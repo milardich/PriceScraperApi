@@ -1,9 +1,14 @@
 package sm.scraper.dto;
 
+import lombok.Getter;
+import lombok.Setter;
+
+@Getter
+@Setter
 public class ItemDto {
-    public String url;
-    public String name;
-    public Integer priceWhole;
-    public Integer priceDecimal;
-    public String currency;
+    private String url;
+    private String name;
+    private Integer priceWhole;
+    private Integer priceDecimal;
+    private String currency;
 }
