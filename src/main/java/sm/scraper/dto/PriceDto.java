@@ -9,4 +9,5 @@ public class PriceDto {
     private Integer whole;
     private Integer decimal;
     private String currency;
+    private String scrapingDate;
 }

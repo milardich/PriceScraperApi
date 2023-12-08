@@ -5,7 +5,7 @@ import sm.scraper.dto.PriceDto;
 import sm.scraper.util.Curl;
 import sm.scraper.util.Scraper;
 
-import java.util.ArrayList;
+import java.time.LocalDateTime;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
@@ -26,10 +26,11 @@ public class IkeaScraper implements Scraper {
         priceDto.setWhole(priceWhole);
         priceDto.setDecimal(priceDecimal);
         priceDto.setCurrency(currency);
+        priceDto.setScrapingDate(LocalDateTime.now().toString());
 
         scrapedItem.setName(itemName);
         scrapedItem.setUrl(url);
-        scrapedItem.setPrice(priceDto);
+        scrapedItem.setCurrentPrice(priceDto);
 
         return scrapedItem;
     }

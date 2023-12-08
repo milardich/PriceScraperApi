@@ -22,11 +22,10 @@ public class Item {
     @Column(name = "url")
     private String url;
 
-    @Column(name = "name")
+    @Column(name = "item_name")
     private String name;
 
     @JsonManagedReference
     @OneToMany(mappedBy = "item")
     private List<Price> prices;
-
 }

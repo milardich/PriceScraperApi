@@ -11,11 +11,11 @@ public interface ItemMapper {
 
     @Mapping(target = "url", source = "url")
     @Mapping(target = "name", source = "name")
-    @Mapping(target = "prices", source = "prices")
+    @Mapping(target = "previousPrices", source = "prices")
     ItemDto toDto(Item item);
 
     @Mapping(target = "url", source = "url")
     @Mapping(target = "name", source = "name")
-    @Mapping(target = "prices", source = "prices")
+    @Mapping(target = "prices", source = "previousPrices")
     Item toEntity(ItemDto dto);
 }

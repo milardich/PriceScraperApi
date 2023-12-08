@@ -5,6 +5,8 @@ import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.Setter;
 
+import java.time.LocalDateTime;
+
 @Entity
 @Table(name = "price")
 @Getter
@@ -22,12 +24,15 @@ public class Price {
     @JoinColumn(name = "item_id")
     private Item item;
 
-    @Column(name = "whole")
+    @Column(name = "price_whole")
     private Integer whole;
 
-    @Column(name = "decimal")
+    @Column(name = "price_decimal")
     private Integer decimal;
 
     @Column(name = "currency")
     private String currency;
+
+    @Column(name = "scraping_date")
+    private LocalDateTime scrapingDate;
 }
