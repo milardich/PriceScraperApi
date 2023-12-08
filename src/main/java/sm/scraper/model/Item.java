@@ -1,11 +1,14 @@
 package sm.scraper.model;
 
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.Setter;
 
+import java.util.List;
+
 @Entity
-@Table(name = "items")
+@Table(name = "item")
 @Getter
 @Setter
 public class Item {
@@ -22,12 +25,8 @@ public class Item {
     @Column(name = "name")
     private String name;
 
-    @Column(name = "price_whole")
-    private Integer priceWhole;
+    @JsonManagedReference
+    @OneToMany(mappedBy = "item")
+    private List<Price> prices;
 
-    @Column(name = "price_decimal")
-    private Integer priceDecimal;
-
-    @Column(name = "currency")
-    private String currency;
 }

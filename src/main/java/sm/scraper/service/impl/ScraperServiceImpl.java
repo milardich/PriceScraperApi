@@ -1,9 +1,12 @@
 package sm.scraper.service.impl;
 
 import jakarta.persistence.EntityNotFoundException;
+import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import sm.scraper.dto.ItemDto;
+import sm.scraper.mapper.ItemMapper;
 import sm.scraper.model.Item;
+import sm.scraper.repository.ItemRepository;
 import sm.scraper.service.ScraperService;
 import sm.scraper.util.Scraper;
 import sm.scraper.util.Scrapers;
@@ -12,14 +15,15 @@ import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 @Service
+@RequiredArgsConstructor
 public class ScraperServiceImpl implements ScraperService {
 
-    @Override
-    public ItemDto getItemData(String itemUrl) {
-        Scrapers scrapers = new Scrapers();
+    private final ItemRepository itemRepository;
+    private final ItemMapper itemMapper;
 
-        // receive url of an item from request
-        //String itemUrl = "https://www.ikea.com/hr/hr/p/markus-uredska-stolica-vissle-tamno-siva-70261150/";
+    @Override
+    public ItemDto scrape(String itemUrl) {
+        Scrapers scrapers = new Scrapers();
 
         // extract website base url
         String baseUrl = extractBaseUrl(itemUrl);
@@ -31,7 +35,12 @@ public class ScraperServiceImpl implements ScraperService {
         }
 
         // scrape item with full url provided
-        return scraper.scrape(itemUrl);
+        ItemDto itemDto = scraper.scrape(itemUrl);
+
+        // TODO: save scraped data to db
+        // itemRepository.save(itemMapper.toEntity(itemDto));
+
+        return itemDto;
     }
 
     private static String extractBaseUrl(String url) {

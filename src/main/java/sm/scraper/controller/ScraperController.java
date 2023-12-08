@@ -15,6 +15,6 @@ public class ScraperController {
 
     @GetMapping("/api/scrape")
     ItemDto getItemData(@RequestParam("item-url") String itemUrl) {
-        return scraperService.getItemData(itemUrl);
+        return scraperService.scrape(itemUrl);
     }
 }
