@@ -42,12 +42,19 @@ public class ScraperServiceImpl implements ScraperService {
             throw new EntityNotFoundException("Scraper for website <" + baseUrl + "> is not implemented");
         }
 
-        // scrape item with full url provided
+        // scrape item with full url provided, save newly added item and prices to db
         ItemDto itemDto = scraper.scrape(itemUrl);
         Item item = itemMapper.toEntity(itemDto);
         Price price = priceMapper.toEntity(itemDto.getCurrentPrice());
 
-        Item savedItem = itemRepository.save(item);
+        Item savedItem;
+
+        if(!itemRepository.itemExistsByUrl(itemUrl)) {
+            savedItem = itemRepository.save(item);
+        }
+        else {
+            savedItem = itemRepository.getItemByUrl(itemUrl);
+        }
 
         price.setItem(savedItem);
 

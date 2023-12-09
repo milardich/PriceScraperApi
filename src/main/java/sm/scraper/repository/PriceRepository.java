@@ -8,6 +8,6 @@ import java.util.List;
 
 public interface PriceRepository extends JpaRepository<Price, Long> {
 
-    @Query("SELECT p FROM Price p WHERE p.item.id = :itemId")
+    @Query("SELECT p FROM Price p WHERE p.item.id = :itemId ORDER BY p.id DESC")
     List<Price> getPricesByItemId(Long itemId);
 }
