@@ -4,7 +4,6 @@ import sm.scraper.dto.ItemDto;
 import sm.scraper.dto.PriceDto;
 import sm.scraper.util.Curl;
 import sm.scraper.util.Scraper;
-
 import java.time.LocalDateTime;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
@@ -41,7 +40,6 @@ public class IkeaScraper implements Scraper {
         Matcher matcher = pattern.matcher(html);
 
         if (matcher.find()) {
-
             return Integer.parseInt(matcher.group(1));
         } else {
             System.out.println("No match found.");
@@ -56,7 +54,6 @@ public class IkeaScraper implements Scraper {
         Matcher matcher = pattern.matcher(html);
 
         if (matcher.find()) {
-
             return Integer.parseInt(matcher.group(1));
         } else {
             System.out.println("No match found.");

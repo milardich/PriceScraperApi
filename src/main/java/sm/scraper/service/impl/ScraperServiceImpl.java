@@ -14,7 +14,6 @@ import sm.scraper.repository.PriceRepository;
 import sm.scraper.service.ScraperService;
 import sm.scraper.util.Scraper;
 import sm.scraper.util.Scrapers;
-
 import java.util.ArrayList;
 import java.util.List;
 import java.util.regex.Matcher;
@@ -42,8 +41,9 @@ public class ScraperServiceImpl implements ScraperService {
             throw new EntityNotFoundException("Scraper for website <" + baseUrl + "> is not implemented");
         }
 
-        // scrape item with full url provided, save newly added item and prices to db
+        // scrape item with full url provided
         ItemDto itemDto = scraper.scrape(itemUrl);
+
         Item item = itemMapper.toEntity(itemDto);
         Price price = priceMapper.toEntity(itemDto.getCurrentPrice());
 
@@ -60,7 +60,7 @@ public class ScraperServiceImpl implements ScraperService {
 
         priceRepository.save(price);
 
-        // fetch prices and return
+        // fetch previous prices and return
         List<Price> previousPrices = priceRepository.getPricesByItemId(savedItem.getId());
         List<PriceDto> previousPricesDto = new ArrayList<>();
         previousPrices.forEach(p -> {

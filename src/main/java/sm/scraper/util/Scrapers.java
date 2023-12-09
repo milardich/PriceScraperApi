@@ -2,7 +2,6 @@ package sm.scraper.util;
 
 import sm.scraper.util.impl.AmazonScraper;
 import sm.scraper.util.impl.IkeaScraper;
-
 import java.util.HashMap;
 
 public class Scrapers {
