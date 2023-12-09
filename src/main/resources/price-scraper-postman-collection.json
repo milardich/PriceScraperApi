@@ -1,0 +1,60 @@
+{
+	"info": {
+		"_postman_id": "39118d7d-0b7c-494b-9c16-d5528790bdfe",
+		"name": "Scraper",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "28665374"
+	},
+	"item": [
+		{
+			"name": "Scrape Item Data",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "localhost:8080/api/scrape?item-url=https://www.ikea.com/hr/hr/p/markus-uredska-stolica-vissle-tamno-siva-70261150/",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"api",
+						"scrape"
+					],
+					"query": [
+						{
+							"key": "item-url",
+							"value": "https://www.ikea.com/hr/hr/p/markus-uredska-stolica-vissle-tamno-siva-70261150/"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get Item By Url",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "localhost:8080/api/item?url=https://www.ikea.com/hr/hr/p/markus-uredska-stolica-vissle-tamno-siva-70261150/",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"api",
+						"item"
+					],
+					"query": [
+						{
+							"key": "url",
+							"value": "https://www.ikea.com/hr/hr/p/markus-uredska-stolica-vissle-tamno-siva-70261150/"
+						}
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}
