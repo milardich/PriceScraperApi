@@ -1,3 +1,4 @@
+CREATE DATABASE IF NOT EXISTS price_scraper;
 DROP TABLE IF EXISTS price;
 DROP TABLE IF EXISTS item;
 
@@ -14,4 +15,7 @@ CREATE TABLE IF NOT EXISTS price (
 	price_decimal INTEGER,
 	currency VARCHAR(50),
 	scraping_date TIMESTAMP
-); 
+);
+
+CREATE SEQUENCE IF NOT EXISTS item_sequence START 1;
+CREATE SEQUENCE IF NOT EXISTS price_sequence START 1;
