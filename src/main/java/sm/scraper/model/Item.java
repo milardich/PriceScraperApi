@@ -24,6 +24,9 @@ public class Item {
     @Column(name = "item_name")
     private String name;
 
+    @Column(name = "item_image_url")
+    private String itemImageUrl;
+
     @JsonManagedReference
     @OneToMany(mappedBy = "item")
     private List<Price> prices;

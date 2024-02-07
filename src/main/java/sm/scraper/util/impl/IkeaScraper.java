@@ -21,6 +21,7 @@ public class IkeaScraper implements Scraper {
         Integer priceDecimal = getPriceDecimal(scrapedHtml);
         String currency = getPriceCurrency(scrapedHtml);
         String itemName = getItemName(scrapedHtml);
+        String itemImageUrl = getItemImageUrl(scrapedHtml);
 
         priceDto.setWhole(priceWhole);
         priceDto.setDecimal(priceDecimal);
@@ -30,6 +31,7 @@ public class IkeaScraper implements Scraper {
         scrapedItem.setName(itemName);
         scrapedItem.setUrl(url);
         scrapedItem.setCurrentPrice(priceDto);
+        scrapedItem.setItemImageUrl(itemImageUrl);
 
         return scrapedItem;
     }
@@ -88,5 +90,11 @@ public class IkeaScraper implements Scraper {
         }
 
         return null;
+    }
+
+    // TODO: implement this
+    private String getItemImageUrl(String html) {
+
+        return "http://example-website/image_url_example";
     }
 }

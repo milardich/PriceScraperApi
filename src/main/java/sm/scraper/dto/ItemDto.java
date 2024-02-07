@@ -9,6 +9,7 @@ import java.util.List;
 public class ItemDto {
     private String url;
     private String name;
+    private String itemImageUrl;
     private PriceDto currentPrice;
     private List<PriceDto> previousPrices;
 }
