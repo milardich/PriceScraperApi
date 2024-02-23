@@ -12,8 +12,11 @@ import sm.scraper.model.Price;
 import sm.scraper.repository.ItemRepository;
 import sm.scraper.repository.PriceRepository;
 import sm.scraper.service.ScraperService;
+import sm.scraper.util.NewScraper;
 import sm.scraper.util.Scraper;
 import sm.scraper.util.Scrapers;
+import sm.scraper.util.ScrapingConfig;
+
 import java.util.ArrayList;
 import java.util.List;
 import java.util.regex.Matcher;
@@ -30,25 +33,24 @@ public class ScraperServiceImpl implements ScraperService {
 
     @Override
     public ItemDto scrape(String itemUrl) {
-        Scrapers scrapers = new Scrapers();
 
         // extract website base url
         String baseUrl = extractBaseUrl(itemUrl);
 
-        // get implemented scraper for provided website baseUrl
-        Scraper scraper = scrapers.get(baseUrl);
-        if(scraper == null) {
-            throw new EntityNotFoundException("Scraper for website <" + baseUrl + "> is not implemented");
+        // get scraper config from website_scraper_config.json (resources dir)
+        NewScraper newScraper = ScrapingConfig.getScraper(baseUrl);
+        if(newScraper == null) {
+            throw new EntityNotFoundException("Scraper for website " + baseUrl + " not implemented.");
         }
 
         // scrape item with full url provided
-        ItemDto itemDto = scraper.scrape(itemUrl);
+        ItemDto itemDto = newScraper.scrape(itemUrl);
 
         Item item = itemMapper.toEntity(itemDto);
         Price price = priceMapper.toEntity(itemDto.getCurrentPrice());
 
+        // save item to db / get item from db if exists
         Item savedItem;
-
         if(!itemRepository.itemExistsByUrl(itemUrl)) {
             savedItem = itemRepository.save(item);
         }
