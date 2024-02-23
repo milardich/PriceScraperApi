@@ -6,18 +6,11 @@
     "itemNameRegex": "<span\\s+class=\"pip-header-section__title--big\\s+notranslate\"\\s+translate=\"no\">(.*?)<\\/span>",
     "itemImageRegex": ""
   },
-  "https://www.sancta-domenica.hr": {
-    "priceWholeRegex": "<span\\s+class=\"price\">\\s*(\\d+)\\.\\d{3},\\d{2}&nbsp;EUR\\s*<\\/span>\n",
+  "https://www.hgspot.hr": {
+    "priceWholeRegex": "<div itemprop=\"price\" content=\"(\\d+)(?:\\.\\d+)?\"",
     "priceDecimalRegex": "",
-    "priceCurrencyRegex": "<meta itemprop=\"priceCurrency\" content=\"([A-Z]{3})\"\n",
-    "itemNameRegex": "<span class=\"base\" data-ui-id=\"page-title-wrapper\" itemprop=\"name\">([^<]+)</span>\n",
-    "itemImageRegex": ""
-  },
-  "https://www.amazon.com": {
-    "priceWholeRegex": "",
-    "priceDecimalRegex": "",
-    "priceCurrencyRegex": "",
-    "itemNameRegex": "",
-    "itemImageRegex": ""
+    "priceCurrencyRegex": "<div itemprop=\"priceCurrency\" content=\"([A-Z]+)\" class=\"currency\">€<\\/div>\n",
+    "itemNameRegex": "<h1 itemprop=\"name\">(.*?)<\\/h1>\n",
+    "itemImageRegex": "<img\\s+itemprop=\"image\"\\s+src=\"([^\"]+)\"\\s+width=\"\\d+\"\\s+height=\"\\d+\"\\s+style=\"height:\\s+100%;\">\n"
   }
 }

@@ -41,7 +41,7 @@ public class Scraper {
 
     private String getStringValue(String html, String regex) {
         if(Objects.equals(regex, "")) {
-            return "NULL";
+            return null;
         }
         Pattern pattern = Pattern.compile(regex);
         Matcher matcher = pattern.matcher(html);
@@ -56,7 +56,7 @@ public class Scraper {
 
     private Integer getIntValue(String html, String regex) {
         if(Objects.equals(regex, "")) {
-            return -1;
+            return null;
         }
         Pattern pattern = Pattern.compile(regex);
         Matcher matcher = pattern.matcher(html);
