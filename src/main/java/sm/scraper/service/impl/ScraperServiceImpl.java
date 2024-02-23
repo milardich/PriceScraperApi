@@ -12,12 +12,12 @@ import sm.scraper.model.Price;
 import sm.scraper.repository.ItemRepository;
 import sm.scraper.repository.PriceRepository;
 import sm.scraper.service.ScraperService;
+import sm.scraper.util.Curl;
 import sm.scraper.util.Scraper;
-import sm.scraper.util.Scrapers;
+import sm.scraper.util.ScrapingConfig;
+
 import java.util.ArrayList;
 import java.util.List;
-import java.util.regex.Matcher;
-import java.util.regex.Pattern;
 
 @Service
 @RequiredArgsConstructor
@@ -30,15 +30,14 @@ public class ScraperServiceImpl implements ScraperService {
 
     @Override
     public ItemDto scrape(String itemUrl) {
-        Scrapers scrapers = new Scrapers();
 
         // extract website base url
-        String baseUrl = extractBaseUrl(itemUrl);
+        String baseUrl = Curl.extractBaseUrl(itemUrl);
 
-        // get implemented scraper for provided website baseUrl
-        Scraper scraper = scrapers.get(baseUrl);
+        // get scraper config from website_scraper_config.json (resources dir)
+        Scraper scraper = ScrapingConfig.getScraper(baseUrl);
         if(scraper == null) {
-            throw new EntityNotFoundException("Scraper for website <" + baseUrl + "> is not implemented");
+            throw new EntityNotFoundException("Scraper for website " + baseUrl + " not implemented.");
         }
 
         // scrape item with full url provided
@@ -47,8 +46,8 @@ public class ScraperServiceImpl implements ScraperService {
         Item item = itemMapper.toEntity(itemDto);
         Price price = priceMapper.toEntity(itemDto.getCurrentPrice());
 
+        // save item to db / get item from db if exists
         Item savedItem;
-
         if(!itemRepository.itemExistsByUrl(itemUrl)) {
             savedItem = itemRepository.save(item);
         }
@@ -69,18 +68,5 @@ public class ScraperServiceImpl implements ScraperService {
         });
         itemDto.setPreviousPrices(previousPricesDto);
         return itemDto;
-    }
-
-    private static String extractBaseUrl(String url) {
-        String regex = "^(https:?://[^/]+)";
-        Pattern pattern = Pattern.compile(regex);
-        Matcher matcher = pattern.matcher(url);
-
-        if (matcher.find()) {
-            return matcher.group(1);
-        } else {
-            System.out.println("Error: URL not valid");
-            return null;
-        }
     }
 }

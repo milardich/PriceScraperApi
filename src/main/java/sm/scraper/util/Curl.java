@@ -1,6 +1,8 @@
 package sm.scraper.util;
 
 import java.io.IOException;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 public class Curl {
 
@@ -25,5 +27,18 @@ public class Curl {
         }
 
         return result;
+    }
+
+    public static String extractBaseUrl(String url) {
+        String regex = "^(https:?://[^/]+)";
+        Pattern pattern = Pattern.compile(regex);
+        Matcher matcher = pattern.matcher(url);
+
+        if (matcher.find()) {
+            return matcher.group(1);
+        } else {
+            System.out.println("Error: URL not valid");
+            return null;
+        }
     }
 }
