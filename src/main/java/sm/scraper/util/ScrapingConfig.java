@@ -10,7 +10,7 @@ import java.net.URL;
 
 public class ScrapingConfig {
 
-    public static NewScraper getScraper(String url) {
+    public static Scraper getScraper(String url) {
         try{
             URL resourceUrl = Main.class.getClassLoader().getResource("website_scraper_config.json");
             if(resourceUrl == null) {
@@ -22,7 +22,7 @@ public class ScrapingConfig {
             JSONObject jsonObject = new JSONObject(jsonTokener);
             JSONObject concreteScraper = jsonObject.getJSONObject(url);
 
-            NewScraper scraper = new NewScraper();
+            Scraper scraper = new Scraper();
 
             scraper.setWebsiteUrl(url);
             scraper.setPriceWholeRegex((String) concreteScraper.get("priceWholeRegex"));

@@ -6,6 +6,13 @@
     "itemNameRegex": "<span\\s+class=\"pip-header-section__title--big\\s+notranslate\"\\s+translate=\"no\">(.*?)<\\/span>",
     "itemImageRegex": ""
   },
+  "https://www.sancta-domenica.hr": {
+    "priceWholeRegex": "<span\\s+class=\"price\">\\s*(\\d+)\\.\\d{3},\\d{2}&nbsp;EUR\\s*<\\/span>\n",
+    "priceDecimalRegex": "",
+    "priceCurrencyRegex": "<meta itemprop=\"priceCurrency\" content=\"([A-Z]{3})\"\n",
+    "itemNameRegex": "<span class=\"base\" data-ui-id=\"page-title-wrapper\" itemprop=\"name\">([^<]+)</span>\n",
+    "itemImageRegex": ""
+  },
   "https://www.amazon.com": {
     "priceWholeRegex": "",
     "priceDecimalRegex": "",
