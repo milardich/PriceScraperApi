@@ -22,12 +22,18 @@ public class Scraper {
 
     public ItemDto scrape(String url){
         String scrapedHTML = Curl.getHtml(url);
-
+        String baseUrl = Curl.extractBaseUrl(url);
         ItemDto itemDto = new ItemDto();
         PriceDto priceDto = new PriceDto();
         itemDto.setUrl(url);
         itemDto.setName(getStringValue(scrapedHTML, this.itemNameRegex));
-        itemDto.setItemImageUrl(getStringValue(scrapedHTML, this.itemImageRegex));
+
+        String itemImageUrl = getStringValue(scrapedHTML, this.itemImageRegex);
+        if(itemImageUrl != null && !itemImageUrl.contains(baseUrl)){
+            itemImageUrl = baseUrl + '/' + itemImageUrl;
+        }
+        itemDto.setItemImageUrl(itemImageUrl);
+
         priceDto.setWhole(getIntValue(scrapedHTML, this.priceWholeRegex));
         priceDto.setDecimal(getIntValue(scrapedHTML, this.priceDecimalRegex));
         priceDto.setCurrency(getStringValue(scrapedHTML, this.priceCurrencyRegex));

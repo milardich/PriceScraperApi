@@ -4,7 +4,7 @@
     "priceDecimalRegex": "<span\\s+class=\"pip-temp-price__decimal\"><span\\s+class=\"pip-temp-price__separator\">,<\\/span>(\\d+)<\\/span>",
     "priceCurrencyRegex": "<span\\s+class=\"pip-temp-price__sr-text\">.*?(\\p{Sc}).*?<\\/span>",
     "itemNameRegex": "<span\\s+class=\"pip-header-section__title--big\\s+notranslate\"\\s+translate=\"no\">(.*?)<\\/span>",
-    "itemImageRegex": ""
+    "itemImageRegex": "<img\\s+class=\"pip-image\"\\s+.*?src=\"([^\"]+)\""
   },
   "https://www.hgspot.hr": {
     "priceWholeRegex": "<div itemprop=\"price\" content=\"(\\d+)(?:\\.\\d+)?\"",
