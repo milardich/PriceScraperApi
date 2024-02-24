@@ -26,52 +26,22 @@ public class Scraper {
         ItemDto itemDto = new ItemDto();
         PriceDto priceDto = new PriceDto();
         itemDto.setUrl(url);
-        itemDto.setName(getStringValue(scrapedHTML, this.itemNameRegex));
+        itemDto.setName(RegexUtil.getStringValue(scrapedHTML, this.itemNameRegex));
 
-        String itemImageUrl = getStringValue(scrapedHTML, this.itemImageRegex);
+        String itemImageUrl = RegexUtil.getStringValue(scrapedHTML, this.itemImageRegex);
         if(itemImageUrl != null && !itemImageUrl.contains(baseUrl)){
             itemImageUrl = baseUrl + '/' + itemImageUrl;
         }
         itemDto.setItemImageUrl(itemImageUrl);
 
-        priceDto.setWhole(getIntValue(scrapedHTML, this.priceWholeRegex));
-        priceDto.setDecimal(getIntValue(scrapedHTML, this.priceDecimalRegex));
-        priceDto.setCurrency(getStringValue(scrapedHTML, this.priceCurrencyRegex));
+        priceDto.setWhole(RegexUtil.getIntValue(scrapedHTML, this.priceWholeRegex));
+        priceDto.setDecimal(RegexUtil.getIntValue(scrapedHTML, this.priceDecimalRegex));
+        priceDto.setCurrency(RegexUtil.getStringValue(scrapedHTML, this.priceCurrencyRegex));
         priceDto.setScrapingDate(LocalDateTime.now().toString());
 
         itemDto.setCurrentPrice(priceDto);
 
         return itemDto;
 
-    }
-
-    private String getStringValue(String html, String regex) {
-        if(Objects.equals(regex, "")) {
-            return null;
-        }
-        Pattern pattern = Pattern.compile(regex);
-        Matcher matcher = pattern.matcher(html);
-
-        if (matcher.find()) {
-            return matcher.group(1);
-        } else {
-            System.out.println("No match found for regex: " + regex);
-        }
-        return null;
-    }
-
-    private Integer getIntValue(String html, String regex) {
-        if(Objects.equals(regex, "")) {
-            return null;
-        }
-        Pattern pattern = Pattern.compile(regex);
-        Matcher matcher = pattern.matcher(html);
-
-        if (matcher.find()) {
-            return Integer.parseInt(matcher.group(1));
-        } else {
-            System.out.println("No match found for regex: " + regex);
-        }
-        return null;
     }
 }
