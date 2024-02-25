@@ -1,12 +1,15 @@
 package sm.scraper.util;
 
 import com.sun.tools.javac.Main;
+import org.json.JSONArray;
 import org.json.JSONObject;
 import org.json.JSONTokener;
 
 import java.io.FileReader;
 import java.io.IOException;
+import java.lang.reflect.Array;
 import java.net.URL;
+import java.util.ArrayList;
 
 public class ScrapingConfig {
 
@@ -24,12 +27,15 @@ public class ScrapingConfig {
 
             Scraper scraper = new Scraper();
 
+//            concreteScraper.getJSONArray("priceWholeRegex");
+
+
             scraper.setWebsiteUrl(url);
-            scraper.setPriceWholeRegex((String) concreteScraper.get("priceWholeRegex"));
-            scraper.setPriceDecimalRegex((String) concreteScraper.get("priceDecimalRegex"));
-            scraper.setPriceCurrencyRegex((String) concreteScraper.get("priceCurrencyRegex"));
-            scraper.setItemNameRegex((String) concreteScraper.get("itemNameRegex"));
-            scraper.setItemImageRegex((String) concreteScraper.get("itemImageRegex"));
+            scraper.setPriceWholeRegex(concreteScraper.getJSONArray("priceWholeRegex"));
+            scraper.setPriceDecimalRegex(concreteScraper.getJSONArray("priceDecimalRegex"));
+            scraper.setPriceCurrencyRegex(concreteScraper.getJSONArray("priceCurrencyRegex"));
+            scraper.setItemNameRegex(concreteScraper.getJSONArray("itemNameRegex"));
+            scraper.setItemImageRegex(concreteScraper.getJSONArray("itemImageRegex"));
             return scraper;
 
         } catch (IOException e) {

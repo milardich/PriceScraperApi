@@ -2,6 +2,7 @@ package sm.scraper.util;
 
 import lombok.Getter;
 import lombok.Setter;
+import org.json.JSONArray;
 import sm.scraper.dto.ItemDto;
 import sm.scraper.dto.PriceDto;
 
@@ -14,11 +15,11 @@ import java.util.regex.Pattern;
 @Setter
 public class Scraper {
     private String websiteUrl;
-    private String priceWholeRegex;
-    private String priceDecimalRegex;
-    private String priceCurrencyRegex;
-    private String itemNameRegex;
-    private String itemImageRegex;
+    private JSONArray priceWholeRegex;
+    private JSONArray priceDecimalRegex;
+    private JSONArray priceCurrencyRegex;
+    private JSONArray itemNameRegex;
+    private JSONArray itemImageRegex;
 
     public ItemDto scrape(String url){
         String scrapedHTML = Curl.getHtml(url);
@@ -26,17 +27,17 @@ public class Scraper {
         ItemDto itemDto = new ItemDto();
         PriceDto priceDto = new PriceDto();
         itemDto.setUrl(url);
-        itemDto.setName(RegexUtil.getStringValue(scrapedHTML, this.itemNameRegex));
+        itemDto.setName(RegexUtil.getStringValue(scrapedHTML, this.itemNameRegex.get(0).toString(), Integer.parseInt(this.itemNameRegex.get(1).toString())));
 
-        String itemImageUrl = RegexUtil.getStringValue(scrapedHTML, this.itemImageRegex);
+        String itemImageUrl = RegexUtil.getStringValue(scrapedHTML, this.itemImageRegex.get(0).toString(), Integer.parseInt(this.itemImageRegex.get(1).toString()));
         if(itemImageUrl != null && !itemImageUrl.contains(baseUrl)){
             itemImageUrl = baseUrl + '/' + itemImageUrl;
         }
         itemDto.setItemImageUrl(itemImageUrl);
 
-        priceDto.setWhole(RegexUtil.getIntValue(scrapedHTML, this.priceWholeRegex));
-        priceDto.setDecimal(RegexUtil.getIntValue(scrapedHTML, this.priceDecimalRegex));
-        priceDto.setCurrency(RegexUtil.getStringValue(scrapedHTML, this.priceCurrencyRegex));
+        priceDto.setWhole(RegexUtil.getIntValue(scrapedHTML, this.priceWholeRegex.get(0).toString(), Integer.parseInt(this.priceWholeRegex.get(1).toString())));
+        priceDto.setDecimal(RegexUtil.getIntValue(scrapedHTML, this.priceDecimalRegex.get(0).toString(), Integer.parseInt(this.priceDecimalRegex.get(1).toString())));
+        priceDto.setCurrency(RegexUtil.getStringValue(scrapedHTML, this.priceCurrencyRegex.get(0).toString(), Integer.parseInt(this.priceCurrencyRegex.get(1).toString())));
         priceDto.setScrapingDate(LocalDateTime.now().toString());
 
         itemDto.setCurrentPrice(priceDto);
