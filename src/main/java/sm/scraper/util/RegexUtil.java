@@ -10,6 +10,9 @@ public class RegexUtil {
         if(Objects.equals(regex, "")) {
             return null;
         }
+        if(group < 0) {
+            return null;
+        }
         Pattern pattern = Pattern.compile(regex);
         Matcher matcher = pattern.matcher(text);
 
@@ -23,6 +26,9 @@ public class RegexUtil {
 
     public static Integer getIntValue(String text, String regex, Integer group) {
         if(Objects.equals(regex, "")) {
+            return null;
+        }
+        if(group < 0) {
             return null;
         }
         Pattern pattern = Pattern.compile(regex);

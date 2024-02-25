@@ -31,11 +31,11 @@ public class ScrapingConfig {
 
 
             scraper.setWebsiteUrl(url);
-            scraper.setPriceWholeRegex(concreteScraper.getJSONArray("priceWholeRegex"));
-            scraper.setPriceDecimalRegex(concreteScraper.getJSONArray("priceDecimalRegex"));
-            scraper.setPriceCurrencyRegex(concreteScraper.getJSONArray("priceCurrencyRegex"));
-            scraper.setItemNameRegex(concreteScraper.getJSONArray("itemNameRegex"));
-            scraper.setItemImageRegex(concreteScraper.getJSONArray("itemImageRegex"));
+            scraper.setPriceWholeRegex(concreteScraper.getJSONObject("priceWholeRegex"));
+            scraper.setPriceDecimalRegex(concreteScraper.getJSONObject("priceDecimalRegex"));
+            scraper.setPriceCurrencyRegex(concreteScraper.getJSONObject("priceCurrencyRegex"));
+            scraper.setItemNameRegex(concreteScraper.getJSONObject("itemNameRegex"));
+            scraper.setItemImageRegex(concreteScraper.getJSONObject("itemImageRegex"));
             return scraper;
 
         } catch (IOException e) {

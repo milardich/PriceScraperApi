@@ -1,68 +1,68 @@
 {
   "https://www.ikea.com": {
-    "priceWholeRegex": [
-      "<span\\s+class=\"pip-temp-price__integer\">(\\d+)<\\/span>",
-      "1"
-    ],
-    "priceDecimalRegex": [
-      "<span\\s+class=\"pip-temp-price__decimal\"><span\\s+class=\"pip-temp-price__separator\">,<\\/span>(\\d+)<\\/span>",
-      "1"
-    ],
-    "priceCurrencyRegex": [
-      "<span\\s+class=\"pip-temp-price__sr-text\">.*?(\\p{Sc}).*?<\\/span>",
-      "1"
-    ],
-    "itemNameRegex": [
-      "<span\\s+class=\"pip-header-section__title--big\\s+notranslate\"\\s+translate=\"no\">(.*?)<\\/span>",
-      "1"
-    ],
-    "itemImageRegex": [
-      "<img\\s+class=\"pip-image\"\\s+.*?src=\"([^\"]+)\"",
-      "1"
-    ]
+    "priceWholeRegex": {
+      "regex": "<span\\s+class=\"pip-temp-price__integer\">(\\d+)<\\/span>",
+      "group": "1"
+    },
+    "priceDecimalRegex": {
+      "regex":"<span\\s+class=\"pip-temp-price__decimal\"><span\\s+class=\"pip-temp-price__separator\">,<\\/span>(\\d+)<\\/span>",
+      "group": "1"
+    },
+    "priceCurrencyRegex": {
+      "regex": "<span\\s+class=\"pip-temp-price__sr-text\">.*?(\\p{Sc}).*?<\\/span>",
+      "group": "1"
+    },
+    "itemNameRegex": {
+      "regex": "<span\\s+class=\"pip-header-section__title--big\\s+notranslate\"\\s+translate=\"no\">(.*?)<\\/span>",
+      "group": "1"
+    },
+    "itemImageRegex": {
+      "regex": "<img\\s+class=\"pip-image\"\\s+.*?src=\"([^\"]+)\"",
+      "group": "1"
+    }
   },
   "https://www.hgspot.hr": {
-    "priceWholeRegex": [
-      "<div itemprop=\"price\" content=\"(\\d+)(?:\\.\\d+)?\"",
-      "1"
-    ],
-    "priceDecimalRegex": [
-      "",
-      ""
-    ],
-    "priceCurrencyRegex": [
-      "<div itemprop=\"priceCurrency\" content=\"([A-Z]+)\" class=\"currency\">€<\\/div>\n",
-      "1"
-    ],
-    "itemNameRegex": [
-      "<h1 itemprop=\"name\">(.*?)<\\/h1>\n",
-      "1"
-    ],
-    "itemImageRegex": [
-      "<img\\s+itemprop=\"image\"\\s+src=\"([^\"]+)\"\\s+width=\"\\d+\"\\s+height=\"\\d+\"\\s+style=\"height:\\s+100%;\">\n",
-      "1"
-    ]
+    "priceWholeRegex": {
+      "regex": "<div itemprop=\"price\" content=\"(\\d+)(?:\\.\\d+)?\"",
+      "group": "1"
+    },
+    "priceDecimalRegex": {
+      "regex": "",
+      "group": "0"
+    },
+    "priceCurrencyRegex": {
+      "regex": "<div itemprop=\"priceCurrency\" content=\"([A-Z]+)\" class=\"currency\">€<\\/div>\n",
+      "group": "1"
+    },
+    "itemNameRegex": {
+      "regex": "<h1 itemprop=\"name\">(.*?)<\\/h1>\n",
+      "group": "1"
+    },
+    "itemImageRegex": {
+      "regex": "<img\\s+itemprop=\"image\"\\s+src=\"([^\"]+)\"\\s+width=\"\\d+\"\\s+height=\"\\d+\"\\s+style=\"height:\\s+100%;\">\n",
+      "group": "1"
+    }
   },
   "https://www.links.hr": {
-    "priceWholeRegex": [
-      "<div class=\"divTableCell priceDivTableDetails price-value-(\\d[0-9]+)\" style=\"font-size:44px\">(\\d[0-9]+),99 <span class=\"currency-default\">€<\\/span><\\/div>",
-      "2"
-    ],
-    "priceDecimalRegex": [
-      "",
-      "0"
-    ],
-    "priceCurrencyRegex": [
-      "",
-      "0"
-    ],
-    "itemNameRegex": [
-      "",
-      "0"
-    ],
-    "itemImageRegex": [
-      "",
-      "0"
-    ]
+    "priceWholeRegex": {
+      "regex": "<div class=\"divTableCell priceDivTableDetails price-value-(\\d[0-9]+)\" style=\"font-size:44px\">(\\d[0-9]+),99 <span class=\"currency-default\">€<\\/span><\\/div>",
+      "group": "2"
+    },
+    "priceDecimalRegex": {
+      "regex": "",
+      "group": "0"
+    },
+    "priceCurrencyRegex": {
+      "regex": "",
+      "group": "0"
+    },
+    "itemNameRegex": {
+      "regex": "",
+      "group": "0"
+    },
+    "itemImageRegex": {
+      "regex": "",
+      "group": "0"
+    }
   }
 }
