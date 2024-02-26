@@ -49,20 +49,20 @@
       "group": "2"
     },
     "priceDecimalRegex": {
-      "regex": "",
-      "group": "0"
+      "regex": "<div class=\"divTableCell priceDivTableDetails price-value-(\\d[0-9]+)\" style=\"font-size:44px\">(\\d[0-9]+),(\\d[0-9]+) <span class=\"currency-default\">€<\\/span><\\/div>",
+      "group": "3"
     },
     "priceCurrencyRegex": {
-      "regex": "",
-      "group": "0"
+      "regex": "class=\"currency-default\">(.*?)<",
+      "group": "1"
     },
     "itemNameRegex": {
-      "regex": "",
-      "group": "0"
+      "regex": "<h1 itemprop=\"name\">\\s*(.*?)\\s*<\\/h1>",
+      "group": "1"
     },
     "itemImageRegex": {
-      "regex": "",
-      "group": "0"
+      "regex": "<img alt=\"(.*?)\" src=\"(.*?)\" ",
+      "group": "2"
     }
   }
 }
