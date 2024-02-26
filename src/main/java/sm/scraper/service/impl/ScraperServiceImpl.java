@@ -14,7 +14,6 @@ import sm.scraper.repository.PriceRepository;
 import sm.scraper.service.ScraperService;
 import sm.scraper.util.Curl;
 import sm.scraper.util.Scraper;
-
 import java.util.ArrayList;
 import java.util.List;
 

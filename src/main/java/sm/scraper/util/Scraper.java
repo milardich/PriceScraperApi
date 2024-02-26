@@ -3,19 +3,14 @@ package sm.scraper.util;
 import com.sun.tools.javac.Main;
 import lombok.Getter;
 import lombok.Setter;
-import org.json.JSONArray;
 import org.json.JSONObject;
 import org.json.JSONTokener;
 import sm.scraper.dto.ItemDto;
 import sm.scraper.dto.PriceDto;
-
 import java.io.FileReader;
 import java.io.IOException;
 import java.net.URL;
 import java.time.LocalDateTime;
-import java.util.Objects;
-import java.util.regex.Matcher;
-import java.util.regex.Pattern;
 
 @Getter
 @Setter
@@ -78,12 +73,10 @@ public class Scraper {
         );
 
         priceDto.setScrapingDate(LocalDateTime.now().toString());
-
         itemDto.setCurrentPrice(priceDto);
-
         return itemDto;
-
     }
+
 
     public static Scraper getScraper(String url) {
         try{
@@ -106,11 +99,9 @@ public class Scraper {
             scraper.setItemNameRegex(concreteScraper.getJSONObject("itemNameRegex"));
             scraper.setItemImageRegex(concreteScraper.getJSONObject("itemImageRegex"));
             return scraper;
-
         } catch (IOException e) {
             e.printStackTrace();
         }
-
         return null;
     }
 }
