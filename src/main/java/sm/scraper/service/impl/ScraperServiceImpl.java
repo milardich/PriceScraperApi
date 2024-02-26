@@ -14,7 +14,6 @@ import sm.scraper.repository.PriceRepository;
 import sm.scraper.service.ScraperService;
 import sm.scraper.util.Curl;
 import sm.scraper.util.Scraper;
-import sm.scraper.util.ScrapingConfig;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -35,7 +34,7 @@ public class ScraperServiceImpl implements ScraperService {
         String baseUrl = Curl.extractBaseUrl(itemUrl);
 
         // get scraper config from website_scraper_config.json (resources dir)
-        Scraper scraper = ScrapingConfig.getScraper(baseUrl);
+        Scraper scraper = Scraper.getScraper(baseUrl);
         if(scraper == null) {
             throw new EntityNotFoundException("Scraper for website " + baseUrl + " not implemented.");
         }
