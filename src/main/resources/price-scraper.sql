@@ -1,11 +1,8 @@
-CREATE DATABASE IF NOT EXISTS price_scraper;
-DROP TABLE IF EXISTS price;
-DROP TABLE IF EXISTS item;
-
 CREATE TABLE IF NOT EXISTS item (
 	item_id INTEGER PRIMARY KEY,
 	url TEXT,
-	item_name TEXT
+	item_name TEXT,
+	item_image_url TEXT
 );
 
 CREATE TABLE IF NOT EXISTS price (
