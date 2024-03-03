@@ -57,9 +57,20 @@
 }
 ```
 
-### Setup
+### Docker Setup
 
--
+- Run these commands
+  - `docker-compose up` (from the root directory)
+  - `docker exec -it scraper-db-1 bash` 
+    - postgres db container name should be `scraper-db-1`. If it isn't, run `docker ps` and fetch the name of postgres db container
+  - `psql -U postgres` 
+  - `\c price_scraper` (connect to price_scraper database)
+  - paste contents from `resources/price-scraper.sql` and press enter
+- Scraper API is now running on `localhost:8081`
+- Postgres DB is running on `localhost:5433`
+- This request should return `200 OK` and app is ready to use
+  - `localhost:8081/api/scrape?item-url=https://www.ikea.com/hr/hr/p/markus-uredska-stolica-vissle-tamno-siva-70261150/`  
+
 
 # TODO
 
