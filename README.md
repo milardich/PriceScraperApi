@@ -1,8 +1,8 @@
-### About
+## About
 
-- API for tracking prices of various items from various web shops
+- API for tracking prices of various items from various web shops.
 
-### Usage
+## Usage
 - Request: 
 `GET` -> `/api/scrape?item-url=https://example-webshop/example-item123`
 
@@ -52,12 +52,13 @@
     "priceCurrencyRegex": "<div itemprop=\"priceCurrency\" content=\"([A-Z]+)\" class=\"currency\">€<\\/div>\n",
     "itemNameRegex": "<h1 itemprop=\"name\">(.*?)<\\/h1>\n",
     "itemImageRegex": "<img\\s+itemprop=\"image\"\\s+src=\"([^\"]+)\"\\s+width=\"\\d+\"\\s+height=\"\\d+\"\\s+style=\"height:\\s+100%;\">\n"
-  },
-  ...
+  }
 }
 ```
 
-### Docker Setup
+#
+
+## Docker Setup
 
 - Run these commands
   - `docker-compose up` (from the root directory)
@@ -66,10 +67,37 @@
   - `psql -U postgres` 
   - `\c price_scraper` (connect to price_scraper database)
   - paste contents from `resources/price-scraper.sql` and press enter
+  
+
 - Scraper API is now running on `localhost:8081`
 - Postgres DB is running on `localhost:5433`
-- This request should return `200 OK` and app is ready to use
-  - `localhost:8081/api/scrape?item-url=https://www.ikea.com/hr/hr/p/markus-uredska-stolica-vissle-tamno-siva-70261150/`  
+
+
+### Test:
+- Request
+  - `GET` -> `localhost:8081/api/scrape?item-url=https://www.ikea.com/hr/hr/p/markus-uredska-stolica-vissle-tamno-siva-70261150/`
+- Response
+```json
+{
+  "url": "https://www.ikea.com/hr/hr/p/markus-uredska-stolica-vissle-tamno-siva-70261150/",
+  "name": "MARKUS ",
+  "itemImageUrl": "https://www.ikea.com/hr/hr/images/products/markus-uredska-stolica-vissle-tamno-siva__0724714_pe734597_s5.jpg?f=s",
+  "currentPrice": {
+    "whole": 149,
+    "decimal": null,
+    "currency": "€",
+    "scrapingDate": "2024-03-03T20:56:00.707590584"
+  },
+  "previousPrices": [
+    {
+      "whole": 149,
+      "decimal": null,
+      "currency": "€",
+      "scrapingDate": "2024-03-03T20:56:00.707590584"
+    }
+  ]
+}  
+```
 
 
 # TODO
