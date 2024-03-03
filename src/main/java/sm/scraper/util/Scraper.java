@@ -5,12 +5,16 @@ import lombok.Getter;
 import lombok.Setter;
 import org.json.JSONObject;
 import org.json.JSONTokener;
+import org.springframework.core.io.ClassPathResource;
+import org.springframework.core.io.Resource;
 import sm.scraper.dto.ItemDto;
 import sm.scraper.dto.PriceDto;
 import java.io.FileReader;
 import java.io.IOException;
+import java.io.InputStream;
 import java.net.URL;
 import java.time.LocalDateTime;
+import java.util.stream.Stream;
 
 @Getter
 @Setter
@@ -80,13 +84,9 @@ public class Scraper {
 
     public static Scraper getScraper(String url) {
         try{
-            URL resourceUrl = Main.class.getClassLoader().getResource("website_scraper_config.json");
-            if(resourceUrl == null) {
-                throw new IOException("Resource not found: website_scraper_config.json");
-            }
+            Resource resource = new ClassPathResource("website_scraper_config.json");
 
-            FileReader fileReader = new FileReader(resourceUrl.getFile());
-            JSONTokener jsonTokener = new JSONTokener(fileReader);
+            JSONTokener jsonTokener = new JSONTokener(resource.getInputStream());
             JSONObject jsonObject = new JSONObject(jsonTokener);
             JSONObject concreteScraper = jsonObject.getJSONObject(url);
 
