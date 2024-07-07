@@ -1,6 +1,6 @@
 ## About
 
-- API for tracking prices of various items from various web shops.
+- REST API for tracking prices of various items from various web shops.
 
 ## Usage
 - Request: 
